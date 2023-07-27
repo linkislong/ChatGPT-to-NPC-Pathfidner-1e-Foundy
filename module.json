@@ -1,23 +1,25 @@
 {
   "name": "Pathfinder 1e NPC Generator",
-  "version": "11.0.0",
-  "description": "A module that allows you to create Pathfinder 1e NPCs from text.",
+  "title": "Pathfinder 1e NPC Generator",
   "author": "Comrade Chocobo",
+  "description": "This module adds a 'Create NPC' button to the Actor tab. When clicked, a text box appears where users can paste or type text containing important information about an NPC, such as HP, AC, Class levels, skills, spells, weapons, feats, name, alignment, etc. After pasting the text and clicking the 'Create NPC' button inside the text box, the module will parse the text to extract the relevant data and use it to create the NPC in the system. This is designed for Pathfinder 1e.",
+  "version": "1.0.0",
+  "minimumCoreVersion": "0.8.0", 
+  "compatibleCoreVersion": "11.0.0", 
+  "url": "https://your-module-url.com",
+  "manifest": "https://your-module-url.com/module.json",
+  "scripts": [
+    "scripts/parse_text.js"
+  ],
+  "languages": ["en"],
+  "authorUrl": "https://your-author-url.com",
+  "download": "https://your-module-url.com/download/your-module.zip",
+  "manifest": "https://your-module-url.com/module.json",
+  "bugs": "https://your-module-url.com/bugs",
+  "keywords": ["foundry", "vtt", "pathfinder", "npc", "parsing"],
   "dependencies": [],
-  "main": "parse_text.js"
-  "relationships": {
-    "systems": [
-      {
-        "id": "pf1",
-        "type": "system",
-        "compatibility": {
-          "minimum": "9.1"
-        }
-      }
-    ]
-  },
-  "compatibility": {
-    "minimum": "11",
-    "verified": "11"
-  },
+  "readme": "https://your-module-url.com/readme",
+  "changelog": "https://your-module-url.com/changelog",
+  "help": "https://your-module-url.com/help",
+  "scripts": ["scripts/parse_text.js"]
 }
