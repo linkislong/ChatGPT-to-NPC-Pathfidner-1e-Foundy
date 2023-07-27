@@ -1,6 +1,6 @@
 {
   "name": "ChatGPT to NPC",
-  "version": "1.0.0",
+  "version": "11.0.0",
   "description": "A module that generates a Pathfinder 1e NPC from a ChatGPT prompt.",
   "author": "Comrade Chocobo",
   "dependencies": [],
