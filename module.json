@@ -1,6 +1,7 @@
 {
   "name": "Pathfinder 1e NPC Generator",
   "title": "Pathfinder 1e NPC Generator",
+  "id": "unique-identifier",
   "author": "Comrade Chocobo",
   "description": "This module adds a 'Create NPC' button to the Actor tab. When clicked, a text box appears where users can paste or type text containing important information about an NPC, such as HP, AC, Class levels, skills, spells, weapons, feats, name, alignment, etc. After pasting the text and clicking the 'Create NPC' button inside the text box, the module will parse the text to extract the relevant data and use it to create the NPC in the system. This is designed for Pathfinder 1e.",
   "version": "1.0.0",
