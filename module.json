@@ -5,4 +5,19 @@
   "author": "Comrade Chocobo",
   "dependencies": [],
   "main": "parse_text.js"
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf1",
+        "type": "system",
+        "compatibility": {
+          "minimum": "9.1"
+        }
+      }
+    ]
+  },
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
 }
