@@ -1,0 +1,8 @@
+{
+  "name": "Pathfinder 1e NPC Generator",
+  "version": "11.0.0",
+  "description": "A module that allows you to create Pathfinder 1e NPCs from text.",
+  "author": "Comrade Chocobo",
+  "dependencies": [],
+  "main": "parse_text.js"
+}
