@@ -3,56 +3,46 @@ function createButton() {
   const button = document.createElement("button");
   button.textContent = "Create NPC";
   button.addEventListener("click", () => {
-    const textBox = document.createElement("input");
-    textBox.type = "text";
+    const textBox = document.createElement("textarea"); // Use textarea instead of input for multiline text
     textBox.placeholder = "Paste text here";
+    const createButton = document.createElement("button"); // Add a separate button for creating NPC
+    createButton.textContent = "Create NPC";
     document.body.appendChild(textBox);
+    document.body.appendChild(createButton);
     textBox.focus();
-    textBox.addEventListener("keydown", (event) => {
-      if (event.keyCode === 13) {
-        createNPC(textBox.value);
-      }
+    createButton.addEventListener("click", () => {
+      const npcData = parseText(textBox.value); // Use a different variable name to store the parsed data
+      createNPC(npcData);
+      textBox.remove(); // Remove the textbox after NPC creation
+      createButton.remove(); // Remove the "Create NPC" button after NPC creation
     });
   });
-  document.querySelector(".actor-tab-header").appendChild(button);
+  document.querySelector(".actor-directory .directory-footer").prepend(button); // Add button to the top of the actor tab
 }
 
-// This function creates a new NPC from the text that is pasted into the text box
-function createNPC(text) {
-  const data = parseText(text);
-  const npc = createNPC(data);
-  FoundryVTT.campaign.activeScene.addActor(npc);
-}
-
-// This function parses the text and extracts the important information
+// This function parses the text and extracts the important information using JavaScript regex
 function parseText(text) {
-  const config = configparser.ConfigParser();
-  config.read("npc.cfg");
+  const classLevels = text.match(/(?<=class )\d+/g);
+  const hp = text.match(/(?<=hp )\d+/g);
+  const feats = text.match(/(?<=feats )\w+/g);
+  const skills = text.match(/(?<=skills )\w+/g);
+  const weapons = text.match(/(?<=weapons )\w+/g);
+  const armor = text.match(/(?<=armor )\w+/g);
+  const spells = text.match(/(?<=spells )\w+/g);
+  const name = text.match(/(?<=name )\w+/g);
+  const hitDie = text.match(/(?<=hit die )\w+/g);
 
-  class_levels = re.findall(r"(?<=class )\d+", text)
-  hp = re.findall(r"(?<=hp )\d+", text)
-  feats = re.findall(r"(?<=feats )\w+", text)
-  skills = re.findall(r"(?<=skills )\w+", text)
-  weapons = re.findall(r"(?<=weapons )\w+", text)
-  armor = re.findall(r"(?<=armor )\w+", text)
-  spells = re.findall(r"(?<=spells )\w+", text)
-  name = re.findall(r"(?<=name )\w+", text)
-  hit_die = re.findall(r"(?<=hit die )\w+", text)
-
-  data = {
-      "class_levels": class_levels,
-      "hp": hp,
-      "feats": feats,
-      "skills": skills,
-      "weapons": weapons,
-      "armor": armor,
-      "spells": spells,
-      "name": name,
-      "hit_die": hit_die,
-  }
-
-  for key, value in config["npc"].items():
-    data[key] = value
+  const data = {
+    "class_levels": classLevels,
+    "hp": hp,
+    "feats": feats,
+    "skills": skills,
+    "weapons": weapons,
+    "armor": armor,
+    "spells": spells,
+    "name": name,
+    "hit_die": hitDie,
+  };
 
   return data;
 }
@@ -60,18 +50,18 @@ function parseText(text) {
 // This function creates a new NPC based on the extracted information
 function createNPC(data) {
   const npc = {
-      "class_levels": data["class_levels"],
-      "hp": data["hp"],
-      "feats": data["feats"],
-      "skills": data["skills"],
-      "weapons": data["weapons"],
-      "armor": data["armor"],
-      "spells": data["spells"],
-      "name": data["name"],
-      "hit_die": data["hit_die"],
-  }
+    "class_levels": data["class_levels"],
+    "hp": data["hp"],
+    "feats": data["feats"],
+    "skills": data["skills"],
+    "weapons": data["weapons"],
+    "armor": data["armor"],
+    "spells": data["spells"],
+    "name": data["name"],
+    "hit_die": data["hit_die"],
+  };
 
-  return npc;
+  FoundryVTT.campaign.activeScene.createEmbeddedEntity("Actor", npc); // Use createEmbeddedEntity to create the NPC
 }
 
 // This function is called when the module is loaded
@@ -79,6 +69,4 @@ function onLoad() {
   createButton();
 }
 
-if (window.module) {
-  window.module.onLoad = onLoad;
-}
+Hooks.on("ready", onLoad); // Use the Hooks.on function to run the code when Foundry VTT is ready
