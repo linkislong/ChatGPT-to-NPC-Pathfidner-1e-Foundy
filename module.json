@@ -15,12 +15,11 @@
   "languages": ["en"],
   "authorUrl": "https://your-author-url.com",
   "download": "https://your-module-url.com/download/your-module.zip",
-  "manifest": "https://your-module-url.com/module.json",
   "bugs": "https://your-module-url.com/bugs",
   "keywords": ["foundry", "vtt", "pathfinder", "npc", "parsing"],
   "dependencies": [],
+  "license": "Your License (e.g., MIT, Apache-2.0, etc.)",
   "readme": "https://your-module-url.com/readme",
   "changelog": "https://your-module-url.com/changelog",
-  "help": "https://your-module-url.com/help",
-  "scripts": ["scripts/parse_text.js"]
+  "help": "https://your-module-url.com/help"
 }
